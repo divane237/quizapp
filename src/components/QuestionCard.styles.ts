@@ -7,6 +7,7 @@ export const QuestionNumber = styled.p`
     "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
   font-weight: bold;
   padding: 10px 2px;
+  margin: 8px 14px;
 `;
 
 export const Question = styled(QuestionNumber)`

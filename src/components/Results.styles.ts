@@ -9,6 +9,7 @@ export const ResultsContainer = styled.div`
   align-items: center;
   gap: 10px;
   padding: 6px 8px;
+  margin: auto 4px;
 `;
 
 export const FailedResults = styled.p`

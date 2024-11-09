@@ -5,16 +5,19 @@ import QuestionCard from "./components/QuestionCard";
 // styles
 import {
   ActionButtonContainer,
+  AppContainer,
   Button,
   ErrorMessage,
   GlobalStyle,
   QuestionsContainer,
+  StartBtn,
   TitleWithBgImage,
 } from "./App.styles";
 
 // Types
 import { Difficulty, QuestionState } from "./API";
 import Results from "./components/Results";
+import Loading from "./components/Loading";
 
 export type AnswerObject = {
   question: string;
@@ -126,18 +129,17 @@ const App = () => {
   return (
     <>
       <GlobalStyle />
-      <div className="App">
+
+      <AppContainer>
         {/* Ttitle with background image */}
         <TitleWithBgImage>General Knowledge Quiz</TitleWithBgImage>
 
         {/* Loading state */}
-        {loading && <p>Loading...</p>}
+        {loading && <Loading />}
 
         {/* Start */}
         {!loading && questions?.length === 0 && (
-          <Button className="start" onClick={startTrivia}>
-            Start
-          </Button>
+          <StartBtn onClick={startTrivia}>Start</StartBtn>
         )}
 
         {/* Errors */}
@@ -177,7 +179,7 @@ const App = () => {
         {gameOver && (
           <Results handleRestart={startTrivia} userAnswers={userAnswers} />
         )}
-      </div>
+      </AppContainer>
     </>
   );
 };
