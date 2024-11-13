@@ -193,7 +193,7 @@ export const TitleWithBgImage = styled.h1`
   text-transform: uppercase;
   -webkit-font-smoothing: antialiased;
   padding: 4px 8px;
-
+  margin: auto 8px;
   @media (max-width: 768px) {
     font-size: clamp(1.8rem, 2vw + 1rem, 2.5rem);
   }

@@ -131,6 +131,7 @@ const App = () => {
       <GlobalStyle />
 
       <AppContainer>
+        <a href="https://www.x.com">Link added</a>
         {/* Ttitle with background image */}
         <TitleWithBgImage>General Knowledge Quiz</TitleWithBgImage>
 
