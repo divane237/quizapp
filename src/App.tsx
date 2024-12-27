@@ -61,7 +61,15 @@ const App = () => {
   };
 
   const startTrivia = async (): Promise<void> => {
-    if (totalQuestions < 10) return;
+    if (totalQuestions < 10) {
+      setError("Minimum number of questions is 10");
+      return;
+    }
+
+    if (totalQuestions > 100) {
+      setError(" Maximum number of questions is 100");
+      return;
+    }
 
     setError("");
     setGameOver(false);

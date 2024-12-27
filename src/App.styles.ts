@@ -9,23 +9,25 @@ export const GlobalStyle = createGlobalStyle`
  }
 
 body {
-    background-image: url(${BGImage}),  linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5));
+    background-image: url(${BGImage});
+    background-color: goldenrod;
     background-size: cover;
-    background-repeat:no-repeat;    
+    background-repeat:no-repeat; 
+    background-position: center center;   
     user-select: none;
     background-attachment: fixed; 
     width: 100dvw;
   
   
+  
 
     /* Adjust padding for smaller screens */
     @media (max-width: 768px) {
-        padding: 0;
+        /*  */        
     }
 
     @media (max-width: 480px) {
-        padding: 0;
-        height: 100svh;
+      /*  */
     }
 }
 
