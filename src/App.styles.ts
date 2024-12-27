@@ -161,6 +161,13 @@ export const Button = styled.button`
   }
 `;
 
+export const HomeBtn = styled(Button)`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+`;
+
 export const StartBtn = styled(Button)`
   /*  */
   margin: 12px auto;
