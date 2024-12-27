@@ -9,7 +9,6 @@ export const ResultsContainer = styled.div`
   align-items: center;
   gap: 10px;
   padding: 6px 8px;
-  margin: auto 4px;
 `;
 
 export const FailedResults = styled.p`
@@ -35,10 +34,11 @@ export const FailedResults = styled.p`
 `;
 
 export const FinalScore = styled.div`
-  font-size: 1.3rem;
-  font-weight: 600;
+  font-size: 1.4rem;
+  font-weight: bolder;
   font-family: monospace;
   letter-spacing: 1px;
   user-select: none;
-  color: whitesmoke;
+
+  color: black;
 `;

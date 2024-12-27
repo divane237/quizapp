@@ -9,13 +9,13 @@ export const GlobalStyle = createGlobalStyle`
  }
 
 body {
-    background-image: url(${BGImage});
+    background-image: url(${BGImage}),  linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5));
     background-size: cover;
     background-repeat:no-repeat;    
     user-select: none;
     background-attachment: fixed; 
-    height: 100dvh;
-    width: 100vw;
+    width: 100dvw;
+  
   
 
     /* Adjust padding for smaller screens */
@@ -28,6 +28,7 @@ body {
         height: 100svh;
     }
 }
+
 
 *, *::before, *::after {
     box-sizing: border-box;
@@ -50,10 +51,11 @@ export const AppContainer = styled.div`
   /*  */
 
   height: 100dvh;
-  width: 100vw;
+  width: 100dvw;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
+  gap: 20px;
 `;
 
 // Container for the questions, add responsiveness to blur and padding
@@ -63,7 +65,6 @@ export const QuestionsContainer = styled.div`
   -webkit-backdrop-filter: blur(15px);
   padding: 4px 8px;
   color: whitesmoke;
-  margin: 2px 4px auto 8px;
   align-self: center;
   @media (max-width: 768px) {
     padding: 3px 6px;
@@ -193,7 +194,6 @@ export const TitleWithBgImage = styled.h1`
   text-transform: uppercase;
   -webkit-font-smoothing: antialiased;
   padding: 4px 8px;
-  margin: auto 8px;
   @media (max-width: 768px) {
     font-size: clamp(1.8rem, 2vw + 1rem, 2.5rem);
   }
@@ -209,7 +209,6 @@ export const ErrorMessage = styled.p`
   font-weight: 600;
   word-spacing: 4px;
   font-size: 1rem;
-  margin: auto 2px;
 
   /* Adjust font-size for smaller screens */
   @media (max-width: 768px) {

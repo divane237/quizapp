@@ -18,8 +18,7 @@ export const LoadingContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
-  width: 100vw;
+  margin-top: 100px;
   position: relative;
 `;
 
@@ -30,8 +29,8 @@ export const LoadingDot = styled.div<{ index: number }>`
   height: 15px;
   background-color: gray;
   border-radius: 50%;
-  animation: ${colorChange} 1s infinite ease-in-out;
-  animation-delay: ${(props) => `${props.index * 0.1}s`};
+  animation: ${colorChange} 3s infinite ease-in-out;
+  animation-delay: ${(props) => `${props.index * 0.5}s`};
 
   /* Position the dots in a circle */
   transform: rotate(${(props) => props.index * 60}deg) translate(50px)

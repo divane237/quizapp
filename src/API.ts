@@ -32,8 +32,6 @@ export const fetchQuizQuestions = async (
   const endpoint = `${API_URL}/api.php?amount=${amount}&difficulty=${difficulty}&type=multiple`;
 
   try {
-    console.log("api url", API_URL, "End point", endpoint);
-
     const response = await fetch(endpoint);
 
     if (!response.ok) throw new Error("Data was not fetched");

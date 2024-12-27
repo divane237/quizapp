@@ -5,12 +5,17 @@ import MyConfetti from "react-confetti";
 import CountUp from "react-countup";
 import { FailedResults, FinalScore, ResultsContainer } from "./Results.styles";
 
-type Props = {
-  handleRestart: (e: React.MouseEvent<HTMLButtonElement>) => void;
+type ResultProps = {
+  handleReplay: (e: React.MouseEvent<HTMLButtonElement>) => void;
   userAnswers: AnswerObject[];
+  onRestart: (e: React.MouseEvent<HTMLButtonElement>) => void;
 };
 
-const Results: React.FC<Props> = ({ handleRestart, userAnswers }) => {
+const Results: React.FC<ResultProps> = ({
+  handleReplay,
+  userAnswers,
+  onRestart,
+}) => {
   //
   const [windowSize, setWindowSize] = useState({
     width: window.innerWidth,
@@ -78,7 +83,8 @@ const Results: React.FC<Props> = ({ handleRestart, userAnswers }) => {
       </FinalScore>
 
       {/* Restart button */}
-      <Button onClick={handleRestart}>Re-Start</Button>
+      <Button onClick={handleReplay}>Re-Play</Button>
+      <Button onClick={onRestart}>Re-Start</Button>
     </ResultsContainer>
   );
 };

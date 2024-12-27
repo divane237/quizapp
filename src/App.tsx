@@ -18,6 +18,7 @@ import {
 import { Difficulty, QuestionState } from "./API";
 import Results from "./components/Results";
 import Loading from "./components/Loading";
+import Settings from "./components/Settings";
 
 export type AnswerObject = {
   question: string;
@@ -26,7 +27,7 @@ export type AnswerObject = {
   correctAnswer: string;
 };
 
-const TOTAL_QUESTIONS = 10;
+// start
 
 const App = () => {
   const [loading, setLoading] = useState(false);
@@ -35,6 +36,8 @@ const App = () => {
   const [number, setNumber] = useState(0);
   const [userAnswers, setUserAnswers] = useState<AnswerObject[]>([]);
   const [gameOver, setGameOver] = useState(false);
+  const [difficulty, setDifficulty] = useState<Difficulty>(Difficulty.EASY);
+  const [totalQuestions, setTotalQuestions] = useState(10);
 
   // Function to override an object in the array
   const overrideObject = (newObject: AnswerObject) => {
@@ -58,16 +61,17 @@ const App = () => {
   };
 
   const startTrivia = async (): Promise<void> => {
+    if (totalQuestions < 10) return;
+
     setError("");
     setGameOver(false);
     setLoading(true);
-    setGameOver(false);
     setNumber(0);
     setUserAnswers([]);
 
     const { questions: newQuestions, error } = await fetchQuizQuestions(
-      TOTAL_QUESTIONS,
-      Difficulty.EASY
+      totalQuestions,
+      difficulty
     );
 
     if (error) {
@@ -113,8 +117,8 @@ const App = () => {
   const quizResults = () => {
     //
     if (
-      number + 1 === TOTAL_QUESTIONS &&
-      userAnswers.length !== TOTAL_QUESTIONS
+      number + 1 === totalQuestions &&
+      userAnswers.length !== totalQuestions
     ) {
       //
       setError("Please answer all questions !!!");
@@ -126,26 +130,40 @@ const App = () => {
     setGameOver(true);
   };
 
+  const handleRestart = () => {
+    setError("");
+    setGameOver(false);
+    setLoading(false);
+    setQuestions([]);
+    setNumber(0);
+    setUserAnswers([]);
+    setDifficulty(Difficulty.EASY);
+    setTotalQuestions(10);
+    //
+  };
+
   return (
     <>
       <GlobalStyle />
 
       <AppContainer>
-        <a href="https://www.x.com">Link added</a>
-        {/* Ttitle with background image */}
         <TitleWithBgImage>General Knowledge Quiz</TitleWithBgImage>
+        {/* Ttitle with background image */}
 
+        {!loading && questions?.length === 0 && (
+          <Settings
+            setDifficulty={setDifficulty}
+            setTotalQuestions={setTotalQuestions}
+          />
+        )}
         {/* Loading state */}
         {loading && <Loading />}
-
         {/* Start */}
         {!loading && questions?.length === 0 && (
           <StartBtn onClick={startTrivia}>Start</StartBtn>
         )}
-
         {/* Errors */}
         <ErrorMessage>{error} </ErrorMessage>
-
         {/* Questions */}
         {!loading && !gameOver && questions?.length >= 1 && (
           <QuestionsContainer>
@@ -156,7 +174,7 @@ const App = () => {
                   answers={questions[number].answers}
                   callback={saveAnswers}
                   questionNr={number}
-                  totalQuestions={TOTAL_QUESTIONS}
+                  totalQuestions={totalQuestions}
                 />
               </div>
             )}
@@ -164,21 +182,24 @@ const App = () => {
             <ActionButtonContainer>
               {number >= 1 && <Button onClick={prevQuestion}>👈🏾 Back</Button>}
 
-              {questions.length !== 0 && number + 1 !== TOTAL_QUESTIONS && (
+              {questions.length !== 0 && number + 1 !== totalQuestions && (
                 <Button className="next" onClick={nextQuestion}>
                   Next Question 👉🏾
                 </Button>
               )}
 
-              {number + 1 === TOTAL_QUESTIONS && (
+              {number + 1 === totalQuestions && (
                 <Button onClick={quizResults}>Results 🎉</Button>
               )}
             </ActionButtonContainer>
           </QuestionsContainer>
         )}
-
         {gameOver && (
-          <Results handleRestart={startTrivia} userAnswers={userAnswers} />
+          <Results
+            handleReplay={startTrivia}
+            userAnswers={userAnswers}
+            onRestart={handleRestart}
+          />
         )}
       </AppContainer>
     </>
